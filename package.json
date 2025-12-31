@@ -1,0 +1,37 @@
+{
+  "name": "@geanpn/free-google-translate",
+  "version": "1.0.0",
+  "description": "Free Google Translate API library for Node.js - No API key required",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "google-translate",
+    "translate",
+    "translation",
+    "free",
+    "api",
+    "i18n",
+    "localization"
+  ],
+  "author": "Gean Pedro",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "ts-jest": "^29.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/geanpn/free-google-translated-by-geanpn.git"
+  }
+}
