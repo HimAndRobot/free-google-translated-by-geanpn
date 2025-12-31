@@ -34,7 +34,7 @@ export class GoogleTranslator {
     to?: string,
     from?: string,
     options?: Partial<BatchTranslationOptions>
-  ): Promise<TranslationResult> {
+  ): Promise<string[]> {
     return translateBatch(texts, {
       to: to || this.defaultTo,
       from: from || this.defaultFrom,

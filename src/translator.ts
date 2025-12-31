@@ -47,7 +47,7 @@ export async function translate(text: string, options: TranslationOptions): Prom
 export async function translateBatch(
   texts: string[],
   options: BatchTranslationOptions
-): Promise<TranslationResult> {
+): Promise<string[]> {
   const {
     from = 'auto',
     to,
@@ -57,32 +57,39 @@ export async function translateBatch(
   } = options;
 
   if (!texts || texts.length === 0) {
-    return { success: false, error: 'Texts array cannot be empty' };
+    throw new Error('Texts array cannot be empty');
   }
 
   if (!to) {
-    return { success: false, error: 'Target language is required' };
+    throw new Error('Target language is required');
   }
+
+  const cleanedTexts = texts.map(text => {
+    let cleaned = text.trim();
+    cleaned = cleaned.replace(/\{\\[a-zA-Z0-9]+\}/g, '');
+    cleaned = cleaned.replace(/\n/g, " ");
+    return cleaned;
+  });
 
   const translatedTexts: string[] = [];
 
-  for (let i = 0; i < texts.length; i += batchSize) {
-    const chunk = texts.slice(i, i + batchSize);
+  for (let i = 0; i < cleanedTexts.length; i += batchSize) {
+    const chunk = cleanedTexts.slice(i, i + batchSize);
     const textToTranslate = chunk.join(delimiter);
 
     const result = await translate(textToTranslate, { from, to });
 
     if (!result.success) {
-      return { success: false, error: `Batch translation failed: ${result.error}` };
+      throw new Error(`Batch translation failed: ${result.error}`);
     }
 
     const translatedChunk = result.text!.split('|||').map(s => s.trim());
     translatedTexts.push(...translatedChunk);
 
-    if (i + batchSize < texts.length && delay > 0) {
+    if (i + batchSize < cleanedTexts.length && delay > 0) {
       await new Promise(resolve => setTimeout(resolve, delay));
     }
   }
 
-  return { success: true, text: translatedTexts.join('\n') };
+  return translatedTexts;
 }
