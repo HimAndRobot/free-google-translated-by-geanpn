@@ -1,6 +1,6 @@
 {
   "name": "free-google-translate-geanpn",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Free Google Translate API library for Node.js - No API key required",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
