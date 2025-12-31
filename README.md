@@ -15,7 +15,7 @@
 ## Installation
 
 ```bash
-npm install @geanpn/free-google-translate
+npm install free-google-translate-geanpn
 ```
 
 ## Quick Start
@@ -23,7 +23,7 @@ npm install @geanpn/free-google-translate
 ### Functional API
 
 ```javascript
-const { translate } = require('@geanpn/free-google-translate');
+const { translate } = require('free-google-translate-geanpn');
 
 // Simple translation
 const result = await translate('Hello world', { to: 'pt' });
@@ -37,7 +37,7 @@ console.log(result2.text); // "Hola mundo"
 ### Class-based API
 
 ```javascript
-const GoogleTranslator = require('@geanpn/free-google-translate');
+const GoogleTranslator = require('free-google-translate-geanpn');
 
 const translator = new GoogleTranslator('pt', 'auto');
 
@@ -179,7 +179,7 @@ if (!result.success) {
 ### TypeScript
 
 ```typescript
-import { translate, TranslationResult } from '@geanpn/free-google-translate';
+import { translate, TranslationResult } from 'free-google-translate-geanpn';
 
 async function translateText(text: string): Promise<string> {
   const result: TranslationResult = await translate(text, { to: 'pt' });
@@ -216,7 +216,7 @@ async function translateWithRetry(text, options, maxRetries = 3) {
 
 ```javascript
 const fs = require('fs').promises;
-const { translate } = require('@geanpn/free-google-translate');
+const { translate } = require('free-google-translate-geanpn');
 
 async function translateFile(inputPath, outputPath, targetLang) {
   const content = await fs.readFile(inputPath, 'utf-8');
