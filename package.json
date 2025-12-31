@@ -1,5 +1,5 @@
 {
-  "name": "@geanpn/free-google-translate",
+  "name": "free-google-translate-geanpn",
   "version": "1.0.0",
   "description": "Free Google Translate API library for Node.js - No API key required",
   "main": "dist/index.js",
